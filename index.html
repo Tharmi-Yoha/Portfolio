@@ -4,38 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portfolio of Tharmika Yoharanjitham — BSc (Hons) Computer Science - Artificial Intelligence Student, Junior Front-End Developer and UI/UX Designer.">
+    <meta name="theme-color" content="#080808">
     <title>Tharmika Yoharanjitham | Portfolio</title>
+
+    <!-- Fonts: preconnect first so the stylesheet request starts earlier -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap">
+
     <link rel="stylesheet" href="style.css">
+
+    <!-- Marks that JS is available, so reveal animations only hide content when they can also show it again -->
+    <script>document.documentElement.classList.add('js');</script>
 </head>
 
 <body>
+
+    <!-- =========================================================
+         PRELOADER  (pure CSS, no JavaScript, removes itself)
+         ========================================================= -->
+    <div class="preloader" aria-hidden="true">
+        <div class="preloader-inner">
+            <span class="preloader-mark">TY<i>.</i></span>
+            <span class="preloader-bar"></span>
+        </div>
+    </div>
+
+    <a href="#home" class="skip-link">Skip to content</a>
+
+    <!-- =========================================================
+         HEADER
+         ========================================================= -->
     <header class="site-header">
         <div class="container nav-wrap">
+
             <a href="#home" class="logo">
-            <span class="logo-mark">TY.</span>
-            <span class="logo-name">THARMI YOHA</span>
+                <span class="logo-mark">TY.</span>
+                <span class="logo-name">THARMI YOHA</span>
             </a>
+
+            <!-- CSS-only mobile menu toggle -->
+            <input type="checkbox" id="nav-toggle" class="nav-toggle">
+            <label for="nav-toggle" class="nav-burger" aria-label="Open and close the menu">
+                <span></span>
+            </label>
 
             <nav class="nav" aria-label="Main navigation">
                 <a href="#about">About</a>
                 <a href="#skills">Skills</a>
                 <a href="#projects">Projects</a>
+                <a href="#certifications">Certifications</a>
                 <a href="#education">Education</a>
                 <a href="#experience">Experience</a>
                 <a href="#contact">Contact</a>
             </nav>
 
             <a href="#contact" class="nav-cta">Let's Talk <span>↗</span></a>
+
         </div>
     </header>
 
     <main>
-        <!-- HERO -->
+
+        <!-- =========================================================
+             HERO
+             ========================================================= -->
         <section class="hero" id="home">
             <div class="container hero-grid">
+
                 <div class="hero-content">
-                    
-                    <h1> Hello, I'm <span>Tharmika Yoharanjitham.</span></h1>
+
+                    <h1>Hello, I'm <span>Tharmika Yoharanjitham.</span></h1>
 
                     <h2>Junior Front-End Developer <i>|</i> UI/UX Designer</h2>
 
@@ -46,101 +86,124 @@
                     </p>
 
                     <div class="hero-actions">
-                        <a href="#projects" class="btn btn-primary">View My Work </a>
-                        <a href="Tharmika.Y Professtional CV.pdf"
-                        class="btn btn-secondary"
-                        target="_blank">
-                         Download CV 
-                       </a>
+                        <a href="#projects" class="btn btn-primary">View My Work <span>→</span></a>
+                        <a href="Tharmika.Y%20Professtional%20CV.pdf"
+                           class="btn btn-secondary"
+                           target="_blank"
+                           rel="noopener">
+                            Download CV
+                        </a>
                     </div>
 
                     <div class="quick-info">
 
+                        <div class="info-box">
+                            <span class="info-icon" aria-hidden="true">📍</span>
+                            <span>Point Pedro, Jaffna</span>
+                        </div>
 
-                    <div class="info-box">
-                    <span class="info-icon">📍</span>
-                    <span>Point Pedro, Jaffna</span>
+                        <a href="mailto:tharmi952@gmail.com" class="info-box">
+                            <span class="info-icon" aria-hidden="true">✉</span>
+                            <span>tharmi952@gmail.com</span>
+                        </a>
+
+                        <a href="https://www.linkedin.com/in/tharmiyoha/#:~:text=www.linkedin.com/in/tharmiyoha"
+                           class="social-box"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           aria-label="LinkedIn profile">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                <path d="M6.5 8.5H3.5V20H6.5V8.5ZM5 3C3.9 3 3 3.9 3 5S3.9 7 5 7 7 6.1 7 5 6.1 3 5 3ZM21 13.4C21 9.9 19.1 8.1 16.5 8.1C14.9 8.1 13.8 9 13.3 9.8V8.5H10.3V20H13.3V14.3C13.3 12.8 13.6 11.4 15.1 11.4C16.5 11.4 16.5 12.7 16.5 14.4V20H19.5V13.4H21Z"/>
+                            </svg>
+                        </a>
+
+                        <a href="https://github.com/Tharmi-Yoha"
+                           class="social-box"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           aria-label="GitHub profile">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                <path d="M12 2C6.48 2 2 6.58 2 12.23C2 16.75 4.87 20.58 8.84 21.93C9.34 22.03 9.52 21.72 9.52 21.45C9.52 21.21 9.51 20.57 9.5 19.72C6.73 20.34 6.14 18.34 6.14 18.34C5.69 17.15 5.03 16.83 5.03 16.83C4.12 16.19 5.1 16.2 5.1 16.2C6.1 16.27 6.63 17.25 6.63 17.25C7.52 18.82 8.97 18.36 9.54 18.1C9.63 17.43 9.89 16.98 10.17 16.73C7.96 16.47 5.64 15.59 5.64 11.67C5.64 10.55 6.03 9.63 6.67 8.91C6.57 8.66 6.21 7.61 6.77 6.2C6.77 6.2 7.61 5.93 9.52 7.27C10.32 7.04 11.16 6.92 12 6.92C12.84 6.92 13.68 7.04 14.48 7.27C16.39 5.93 17.23 6.2 17.23 6.2C17.79 7.61 17.43 8.66 17.33 8.91C17.97 9.63 18.36 10.55 18.36 11.67C18.36 15.6 16.04 16.46 13.83 16.72C14.18 17.03 14.48 17.63 14.48 18.55C14.48 19.87 14.47 20.93 14.47 21.45C14.47 21.72 14.65 22.04 15.16 21.93C19.13 20.58 22 16.75 22 12.23C22 6.58 17.52 2 12 2Z"/>
+                            </svg>
+                        </a>
+
                     </div>
 
-                    <a href="mailto:tharmi952@gmail.com" class="info-box">
-                    <span class="info-icon">✉</span>
-                    <span>tharmi952@gmail.com</span>
-                    </a>
-
-                    <a href="https://www.linkedin.com/in/tharmiyoha/#:~:text=www.linkedin.com/in/tharmiyoha" 
-                    class="social-box" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    aria-label="LinkedIn">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M6.5 8.5H3.5V20H6.5V8.5ZM5 3C3.9 3 3 3.9 3 5S3.9 7 5 7 7 6.1 7 5 6.1 3 5 3ZM21 13.4C21 9.9 19.1 8.1 16.5 8.1C14.9 8.1 13.8 9 13.3 9.8V8.5H10.3V20H13.3V14.3C13.3 12.8 13.6 11.4 15.1 11.4C16.5 11.4 16.5 12.7 16.5 14.4V20H19.5V13.4H21Z"/>
-                    </svg>
-                    </a>
-
-                    <a href="https://github.com/Tharmi-Yoha" 
-                    class="social-box" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    aria-label="GitHub">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M12 2C6.48 2 2 6.58 2 12.23C2 16.75 4.87 20.58 8.84 21.93C9.34 22.03 9.52 21.72 9.52 21.45C9.52 21.21 9.51 20.57 9.5 19.72C6.73 20.34 6.14 18.34 6.14 18.34C5.69 17.15 5.03 16.83 5.03 16.83C4.12 16.19 5.1 16.2 5.1 16.2C6.1 16.27 6.63 17.25 6.63 17.25C7.52 18.82 8.97 18.36 9.54 18.1C9.63 17.43 9.89 16.98 10.17 16.73C7.96 16.47 5.64 15.59 5.64 11.67C5.64 10.55 6.03 9.63 6.67 8.91C6.57 8.66 6.21 7.61 6.77 6.2C6.77 6.2 7.61 5.93 9.52 7.27C10.32 7.04 11.16 6.92 12 6.92C12.84 6.92 13.68 7.04 14.48 7.27C16.39 5.93 17.23 6.2 17.23 6.2C17.79 7.61 17.43 8.66 17.33 8.91C17.97 9.63 18.36 10.55 18.36 11.67C18.36 15.6 16.04 16.46 13.83 16.72C14.18 17.03 14.48 17.63 14.48 18.55C14.48 19.87 14.47 20.93 14.47 21.45C14.47 21.72 14.65 22.04 15.16 21.93C19.13 20.58 22 16.75 22 12.23C22 6.58 17.52 2 12 2Z"/>
-                    </svg>
-                    </a>
-
-                    </div>
-                        
                 </div>
 
                 <div class="hero-visual">
-                   <div class="visual-ring"></div>
 
-                   <div class="profile-frame">
-                   <div class="profile-image">
-                   <img src="WhatsApp Image 2026-09-13 at 19.55.34.jpeg"
-                   alt="Tharmika Yoharanjitham">
-                   </div>
-                   </div>
+                    <!-- Decorative layers only. Hidden from assistive tech. -->
+                    <div class="visual-stage" aria-hidden="true">
+                        <span class="ring ring-outer"></span>
+                        <span class="ring ring-inner"></span>
+                        <span class="ring ring-arc"></span>
+                        <span class="deco deco-square"></span>
+                        <span class="deco deco-diamond"></span>
+                        <span class="deco deco-dot deco-dot-a"></span>
+                        <span class="deco deco-dot deco-dot-b"></span>
+                    </div>
 
-                  <div class="floating-card card-one">
-                  <strong>UI/UX</strong>
-                  <span>Design</span>
-                  </div>
+                    <div class="profile-frame">
+                        <div class="profile-image">
+                            <img src="WhatsApp%20Image%202026-09-13%20at%2019.55.34.jpeg"
+                                 alt="Portrait of Tharmika Yoharanjitham"
+                                 width="740" height="925"
+                                 fetchpriority="high" decoding="async">
+                        </div>
+                    </div>
 
-                  <div class="floating-card card-two">
-                  <strong>Front-End</strong>
-                  <span>Development</span>
-                  </div>
+                    <div class="floating-card card-one">
+                        <strong>UI/UX</strong>
+                        <span>Design</span>
+                    </div>
+
+                    <div class="floating-card card-two">
+                        <strong>Front-End</strong>
+                        <span>Development</span>
+                    </div>
+
                 </div>
+
             </div>
         </section>
 
-        <!-- ABOUT -->
+        <!-- =========================================================
+             ABOUT
+             ========================================================= -->
         <section class="section about" id="about">
             <div class="container">
-                <div class="section-heading">
+
+                <div class="section-heading" data-reveal>
                     <p class="eyebrow">About Me</p>
                     <h2>Turning ideas into <span>user-friendly experiences.</span></h2>
                 </div>
 
                 <div class="about-grid">
-                    <div class="about-image">
-                        <img src="WhatsApp Image 2026-09-13 at 19.55.34.jpeg" alt="Tharmika Yoharanjitham">
+
+                    <div class="about-image" data-reveal>
+                        <img src="WhatsApp%20Image%202026-09-13%20at%2019.55.34.jpeg"
+                             alt="Portrait of Tharmika Yoharanjitham"
+                             width="740" height="925"
+                             loading="lazy" decoding="async">
                     </div>
 
-                    <div class="about-content">
+                    <div class="about-content" data-reveal>
+
                         <p>
                             I am a Software Engineering graduate with an Overall Distinction in my HND,
                             with a strong foundation in software development, front-end technologies,
                             and UI/UX design. I am passionate about creating clean, responsive, and
                             intuitive digital experiences that combine functionality with thoughtful design.
-    </p>
                         </p>
+
                         <p>
                             My interests lie in Front-End Development and UI/UX Design, where I enjoy
                             transforming ideas and user requirements into engaging and user-friendly
                             interfaces. I continuously strengthen my technical and creative skills
                             through practical projects and hands-on development.
                         </p>
+
                         <p>
                             Currently pursuing a BSc (Hons) in Computer Science with a focus on
                             Artificial Intelligence, I am expanding my knowledge across modern
@@ -149,641 +212,494 @@
                         </p>
 
                         <div class="about-highlights">
+
                             <article>
                                 <span>01</span>
                                 <h3>Software Engineering</h3>
-                                <p>Development & Problem Solving</p>
+                                <p>Development &amp; Problem Solving</p>
                             </article>
+
                             <article>
                                 <span>02</span>
                                 <h3>Front-End Development</h3>
                                 <p>Responsive Web Interfaces</p>
                             </article>
+
                             <article>
                                 <span>03</span>
                                 <h3>UI/UX Design</h3>
-                                <p>Figma & User-Centered Design</p>
+                                <p>Figma &amp; User-Centered Design</p>
                             </article>
+
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
         </section>
 
-       <!-- SKILLS -->
-<section class="section skills" id="skills">
+        <!-- =========================================================
+             SKILLS
+             ========================================================= -->
+        <section class="section skills" id="skills">
+            <div class="container">
 
-    <div class="container">
-
-        <div class="section-heading centered">
-            <p class="eyebrow">Skills & Technologies</p>
-
-            <h2>
-                Tools I use to
-                <span>build & design.</span>
-            </h2>
-
-            <p>
-                My technical foundation covers development, databases,
-                software engineering and interface design.
-            </p>
-        </div>
-
-
-        <div class="skill-grid">
-
-
-            <!-- WEB DEVELOPMENT -->
-            <article class="skill-card">
-
-                <div class="skill-card-header">
-                    <div class="skill-icon">&lt;/&gt;</div>
-                    <span>01</span>
+                <div class="section-heading centered" data-reveal>
+                    <p class="eyebrow">Skills &amp; Technologies</p>
+                    <h2>Tools I use to <span>build &amp; design.</span></h2>
+                    <p class="section-lead">
+                        My technical foundation covers development, databases,
+                        software engineering and interface design.
+                    </p>
                 </div>
 
-                <h3>Web Development</h3>
+                <div class="skill-grid">
 
-                <div class="technology-list">
+                    <!-- WEB DEVELOPMENT -->
+                    <article class="skill-card" data-reveal>
+                        <div class="skill-card-header">
+                            <div class="skill-icon" aria-hidden="true">&lt;/&gt;</div>
+                            <span>01</span>
+                        </div>
 
-                    <div class="technology">
-                        <div class="technology-info">
-                            <span>HTML</span>
-                            <b>90%</b>
-                        </div>
-                        <div class="skill-bar">
-                            <span style="width: 90%;"></span>
-                        </div>
-                    </div>
+                        <h3>Web Development</h3>
 
-                    <div class="technology">
-                        <div class="technology-info">
-                            <span>CSS</span>
-                            <b>90%</b>
+                        <div class="technology-list">
+                            <div class="technology">
+                                <div class="technology-info"><span>HTML</span><b>90%</b></div>
+                                <div class="skill-bar"><span style="--level:90%"></span></div>
+                            </div>
+                            <div class="technology">
+                                <div class="technology-info"><span>CSS</span><b>90%</b></div>
+                                <div class="skill-bar"><span style="--level:90%"></span></div>
+                            </div>
+                            <div class="technology">
+                                <div class="technology-info"><span>JavaScript</span><b>75%</b></div>
+                                <div class="skill-bar"><span style="--level:75%"></span></div>
+                            </div>
+                            <div class="technology">
+                                <div class="technology-info"><span>PHP</span><b>70%</b></div>
+                                <div class="skill-bar"><span style="--level:70%"></span></div>
+                            </div>
                         </div>
-                        <div class="skill-bar">
-                            <span style="width: 90%;"></span>
-                        </div>
-                    </div>
+                    </article>
 
-                    <div class="technology">
-                        <div class="technology-info">
-                            <span>JavaScript</span>
-                            <b>75%</b>
+                    <!-- PROGRAMMING -->
+                    <article class="skill-card" data-reveal>
+                        <div class="skill-card-header">
+                            <div class="skill-icon" aria-hidden="true">⌘</div>
+                            <span>02</span>
                         </div>
-                        <div class="skill-bar">
-                            <span style="width: 75%;"></span>
-                        </div>
-                    </div>
 
-                    <div class="technology">
-                        <div class="technology-info">
-                            <span>PHP</span>
-                            <b>70%</b>
+                        <h3>Programming</h3>
+
+                        <div class="technology-list">
+                            <div class="technology">
+                                <div class="technology-info"><span>C#</span><b>75%</b></div>
+                                <div class="skill-bar"><span style="--level:75%"></span></div>
+                            </div>
+                            <div class="technology">
+                                <div class="technology-info"><span>Java</span><b>75%</b></div>
+                                <div class="skill-bar"><span style="--level:75%"></span></div>
+                            </div>
+                            <div class="technology">
+                                <div class="technology-info"><span>Python</span><b>75%</b></div>
+                                <div class="skill-bar"><span style="--level:75%"></span></div>
+                            </div>
                         </div>
-                        <div class="skill-bar">
-                            <span style="width: 70%;"></span>
+                    </article>
+
+                    <!-- UI/UX DESIGN -->
+                    <article class="skill-card" data-reveal>
+                        <div class="skill-card-header">
+                            <div class="skill-icon" aria-hidden="true">✦</div>
+                            <span>03</span>
                         </div>
-                    </div>
+
+                        <h3>UI/UX Design</h3>
+
+                        <div class="technology-list">
+                            <div class="technology">
+                                <div class="technology-info"><span>Figma</span><b>90%</b></div>
+                                <div class="skill-bar"><span style="--level:90%"></span></div>
+                            </div>
+                            <div class="technology">
+                                <div class="technology-info"><span>Wireframing</span><b>90%</b></div>
+                                <div class="skill-bar"><span style="--level:90%"></span></div>
+                            </div>
+                            <div class="technology">
+                                <div class="technology-info"><span>Prototyping</span><b>75%</b></div>
+                                <div class="skill-bar"><span style="--level:75%"></span></div>
+                            </div>
+                            <div class="technology">
+                                <div class="technology-info"><span>User-Centered Design</span><b>75%</b></div>
+                                <div class="skill-bar"><span style="--level:75%"></span></div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- SOFTWARE ENGINEERING -->
+                    <article class="skill-card" data-reveal>
+                        <div class="skill-card-header">
+                            <div class="skill-icon" aria-hidden="true">◈</div>
+                            <span>04</span>
+                        </div>
+
+                        <h3>Software Engineering</h3>
+
+                        <div class="technology-list">
+                            <div class="technology">
+                                <div class="technology-info"><span>OOP</span><b>75%</b></div>
+                                <div class="skill-bar"><span style="--level:75%"></span></div>
+                            </div>
+                            <div class="technology">
+                                <div class="technology-info"><span>DSA</span><b>70%</b></div>
+                                <div class="skill-bar"><span style="--level:70%"></span></div>
+                            </div>
+                            <div class="technology">
+                                <div class="technology-info"><span>Problem Solving</span><b>85%</b></div>
+                                <div class="skill-bar"><span style="--level:85%"></span></div>
+                            </div>
+                            <div class="technology">
+                                <div class="technology-info"><span>Software Design</span><b>75%</b></div>
+                                <div class="skill-bar"><span style="--level:75%"></span></div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- DATABASE -->
+                    <article class="skill-card" data-reveal>
+                        <div class="skill-card-header">
+                            <div class="skill-icon" aria-hidden="true">DB</div>
+                            <span>05</span>
+                        </div>
+
+                        <h3>Database</h3>
+
+                        <div class="technology-list">
+                            <div class="technology">
+                                <div class="technology-info"><span>SQL</span><b>75%</b></div>
+                                <div class="skill-bar"><span style="--level:75%"></span></div>
+                            </div>
+                            <div class="technology">
+                                <div class="technology-info"><span>MySQL</span><b>75%</b></div>
+                                <div class="skill-bar"><span style="--level:75%"></span></div>
+                            </div>
+                            <div class="technology">
+                                <div class="technology-info"><span>Database Design</span><b>70%</b></div>
+                                <div class="skill-bar"><span style="--level:70%"></span></div>
+                            </div>
+                            <div class="technology">
+                                <div class="technology-info"><span>CRUD</span><b>80%</b></div>
+                                <div class="skill-bar"><span style="--level:80%"></span></div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- TOOLS -->
+                    <article class="skill-card" data-reveal>
+                        <div class="skill-card-header">
+                            <div class="skill-icon" aria-hidden="true">⌘</div>
+                            <span>06</span>
+                        </div>
+
+                        <h3>Tools</h3>
+
+                        <div class="technology-list">
+                            <div class="technology">
+                                <div class="technology-info"><span>Visual Studio</span><b>75%</b></div>
+                                <div class="skill-bar"><span style="--level:75%"></span></div>
+                            </div>
+                            <div class="technology">
+                                <div class="technology-info"><span>VS Code</span><b>90%</b></div>
+                                <div class="skill-bar"><span style="--level:90%"></span></div>
+                            </div>
+                            <div class="technology">
+                                <div class="technology-info"><span>GitHub</span><b>70%</b></div>
+                                <div class="skill-bar"><span style="--level:70%"></span></div>
+                            </div>
+                            <div class="technology">
+                                <div class="technology-info"><span>Cisco Packet Tracer</span><b>65%</b></div>
+                                <div class="skill-bar"><span style="--level:65%"></span></div>
+                            </div>
+                        </div>
+                    </article>
 
                 </div>
-            </article>
 
+            </div>
+        </section>
 
-            <!-- PROGRAMMING -->
-            <article class="skill-card">
-
-                <div class="skill-card-header">
-                    <div class="skill-icon">⌘</div>
-                    <span>02</span>
-                </div>
-
-                <h3>Programming</h3>
-
-                <div class="technology-list">
-
-                    <div class="technology">
-                        <div class="technology-info">
-                            <span>C#</span>
-                            <b>75%</b>
-                        </div>
-                        <div class="skill-bar">
-                            <span style="width: 75%;"></span>
-                        </div>
-                    </div>
-
-                    <div class="technology">
-                        <div class="technology-info">
-                            <span>Java</span>
-                            <b>75%</b>
-                        </div>
-                        <div class="skill-bar">
-                            <span style="width: 75%;"></span>
-                        </div>
-                    </div>
-
-                    <div class="technology">
-                        <div class="technology-info">
-                            <span>Python</span>
-                            <b>75%</b>
-                        </div>
-                        <div class="skill-bar">
-                            <span style="width: 75%;"></span>
-                        </div>
-                    </div>
-
-                </div>
-            </article>
-
-
-            <!-- UI/UX DESIGN -->
-            <article class="skill-card">
-
-                <div class="skill-card-header">
-                    <div class="skill-icon">✦</div>
-                    <span>03</span>
-                </div>
-
-                <h3>UI/UX Design</h3>
-
-                <div class="technology-list">
-
-                    <div class="technology">
-                        <div class="technology-info">
-                            <span>Figma</span>
-                            <b>90%</b>
-                        </div>
-                        <div class="skill-bar">
-                            <span style="width: 90%;"></span>
-                        </div>
-                    </div>
-
-                    <div class="technology">
-                        <div class="technology-info">
-                            <span>Wireframing</span>
-                            <b>90%</b>
-                        </div>
-                        <div class="skill-bar">
-                            <span style="width: 90%;"></span>
-                        </div>
-                    </div>
-
-                    <div class="technology">
-                        <div class="technology-info">
-                            <span>Prototyping</span>
-                            <b>75%</b>
-                        </div>
-                        <div class="skill-bar">
-                            <span style="width: 75%;"></span>
-                        </div>
-                    </div>
-
-                    <div class="technology">
-                        <div class="technology-info">
-                            <span>User-Centered Design</span>
-                            <b>75%</b>
-                        </div>
-                        <div class="skill-bar">
-                            <span style="width: 75%;"></span>
-                        </div>
-                    </div>
-
-                </div>
-            </article>
-
-
-            <!-- SOFTWARE ENGINEERING -->
-            <article class="skill-card">
-
-                <div class="skill-card-header">
-                    <div class="skill-icon">◈</div>
-                    <span>04</span>
-                </div>
-
-                <h3>Software Engineering</h3>
-
-                <div class="technology-list">
-
-                    <div class="technology">
-                        <div class="technology-info">
-                            <span>OOP</span>
-                            <b>75%</b>
-                        </div>
-                        <div class="skill-bar">
-                            <span style="width: 75%;"></span>
-                        </div>
-                    </div>
-
-                    <div class="technology">
-                        <div class="technology-info">
-                            <span>DSA</span>
-                            <b>70%</b>
-                        </div>
-                        <div class="skill-bar">
-                            <span style="width: 70%;"></span>
-                        </div>
-                    </div>
-
-                    <div class="technology">
-                        <div class="technology-info">
-                            <span>Problem Solving</span>
-                            <b>85%</b>
-                        </div>
-                        <div class="skill-bar">
-                            <span style="width: 85%;"></span>
-                        </div>
-                    </div>
-
-                    <div class="technology">
-                        <div class="technology-info">
-                            <span>Software Design</span>
-                            <b>75%</b>
-                        </div>
-                        <div class="skill-bar">
-                            <span style="width: 75%;"></span>
-                        </div>
-                    </div>
-
-                </div>
-            </article>
-
-
-            <!-- DATABASE -->
-            <article class="skill-card">
-
-                <div class="skill-card-header">
-                    <div class="skill-icon">DB</div>
-                    <span>05</span>
-                </div>
-
-                <h3>Database</h3>
-
-                <div class="technology-list">
-
-                    <div class="technology">
-                        <div class="technology-info">
-                            <span>SQL</span>
-                            <b>75%</b>
-                        </div>
-                        <div class="skill-bar">
-                            <span style="width: 75%;"></span>
-                        </div>
-                    </div>
-
-                    <div class="technology">
-                        <div class="technology-info">
-                            <span>MySQL</span>
-                            <b>75%</b>
-                        </div>
-                        <div class="skill-bar">
-                            <span style="width: 75%;"></span>
-                        </div>
-                    </div>
-
-                    <div class="technology">
-                        <div class="technology-info">
-                            <span>Database Design</span>
-                            <b>70%</b>
-                        </div>
-                        <div class="skill-bar">
-                            <span style="width: 70%;"></span>
-                        </div>
-                    </div>
-
-                    <div class="technology">
-                        <div class="technology-info">
-                            <span>CRUD</span>
-                            <b>80%</b>
-                        </div>
-                        <div class="skill-bar">
-                            <span style="width: 80%;"></span>
-                        </div>
-                    </div>
-
-                </div>
-            </article>
-
-
-            <!-- TOOLS -->
-            <article class="skill-card">
-
-                <div class="skill-card-header">
-                    <div class="skill-icon">⌘</div>
-                    <span>06</span>
-                </div>
-
-                <h3>Tools</h3>
-
-                <div class="technology-list">
-
-                    <div class="technology">
-                        <div class="technology-info">
-                            <span>Visual Studio</span>
-                            <b>75%</b>
-                        </div>
-                        <div class="skill-bar">
-                            <span style="width: 75%;"></span>
-                        </div>
-                    </div>
-
-                    <div class="technology">
-                        <div class="technology-info">
-                            <span>VS Code</span>
-                            <b>90%</b>
-                        </div>
-                        <div class="skill-bar">
-                            <span style="width: 90%;"></span>
-                        </div>
-                    </div>
-
-                    <div class="technology">
-                        <div class="technology-info">
-                            <span>GitHub</span>
-                            <b>70%</b>
-                        </div>
-                        <div class="skill-bar">
-                            <span style="width: 70%;"></span>
-                        </div>
-                    </div>
-
-                    <div class="technology">
-                        <div class="technology-info">
-                            <span>Cisco Packet Tracer</span>
-                            <b>65%</b>
-                        </div>
-                        <div class="skill-bar">
-                            <span style="width: 65%;"></span>
-                        </div>
-                    </div>
-
-                </div>
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
-
-        <!-- PROJECTS -->
+        <!-- =========================================================
+             PROJECTS
+             ========================================================= -->
         <section class="section projects" id="projects">
             <div class="container">
-                <div class="section-heading">
+
+                <div class="section-heading" data-reveal>
                     <p class="eyebrow">Selected Projects</p>
-                    <h2>Academic work & <span>practical projects.</span></h2>
+                    <h2>Academic work &amp; <span>practical projects.</span></h2>
                 </div>
 
                 <div class="project-grid">
 
-    <!-- PROJECT 01 -->
-    <article class="project-card">
-        <div class="project-image"
-             style="background-image: url('Screenshot 2026-09-15 125503.png');">
-            <div class="project-overlay">
-                <span class="project-number">01</span>
+                    <!-- PROJECT 01 -->
+                    <article class="project-card" data-reveal>
+                        <div class="project-image"
+                             style="background-image: url('Screenshot%202026-09-15%20125503.png');"
+                             role="img"
+                             aria-label="Screenshot of the Training Fee Calculation System">
+                            <div class="project-overlay">
+                                <span class="project-number">01</span>
+                                <div class="project-title">
+                                    <p class="project-type">C# • Windows Forms • SQL Server</p>
+                                    <h3>Training Fee Calculation System</h3>
+                                </div>
+                            </div>
+                        </div>
 
-                <div class="project-title">
-                    <p class="project-type">C# • Windows Forms • SQL Server</p>
-                    <h3>Training Fee Calculation System</h3>
+                        <div class="project-body">
+                            <p>
+                                A C# Windows application designed to automate training fee
+                                calculations with a user-friendly interface and accurate
+                                computation logic.
+                            </p>
+                            <div class="tags">
+                                <span>C#</span>
+                                <span>SQL Server</span>
+                                <span>Windows Forms</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- PROJECT 02 -->
+                    <article class="project-card" data-reveal>
+                        <div class="project-image"
+                             style="background-image: url('Screenshot%202026-09-15%20125836.png');"
+                             role="img"
+                             aria-label="Screenshot of the E-Commerce Website">
+                            <div class="project-overlay">
+                                <span class="project-number">02</span>
+                                <div class="project-title">
+                                    <p class="project-type">Web Development</p>
+                                    <h3>E-Commerce Website</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-body">
+                            <p>
+                                An online store developed with HTML, CSS, JavaScript, PHP
+                                and MySQL, featuring product listings and database integration.
+                            </p>
+                            <div class="tags">
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>PHP</span>
+                                <span>MySQL</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- PROJECT 03 -->
+                    <article class="project-card" data-reveal>
+                        <div class="project-image"
+                             style="background-image: url('Screenshot%202026-09-15%20130741.png');"
+                             role="img"
+                             aria-label="Screenshot of the Hotel Management Database System">
+                            <div class="project-overlay">
+                                <span class="project-number">03</span>
+                                <div class="project-title">
+                                    <p class="project-type">Database Management</p>
+                                    <h3>Hotel Management Database System</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-body">
+                            <p>
+                                A database management system designed with CRUD functionality
+                                to efficiently manage and organize hotel-related data.
+                            </p>
+                            <div class="tags">
+                                <span>SQL</span>
+                                <span>MySQL</span>
+                                <span>CRUD</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- PROJECT 04 -->
+                    <article class="project-card" data-reveal>
+                        <div class="project-image"
+                             style="background-image: url('Screenshot%202026-09-15%20131045.png');"
+                             role="img"
+                             aria-label="Screenshot of the UI/UX Prototype">
+                            <div class="project-overlay">
+                                <span class="project-number">04</span>
+                                <div class="project-title">
+                                    <p class="project-type">UI/UX Design • Figma</p>
+                                    <h3>UI/UX Prototype</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-body">
+                            <p>
+                                An interactive UI/UX prototype designed in Figma, applying
+                                user-centered design principles to create a clear and
+                                engaging interface.
+                            </p>
+                            <div class="tags">
+                                <span>Figma</span>
+                                <span>Wireframe</span>
+                                <span>Prototype</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- PROJECT 05 -->
+                    <article class="project-card" data-reveal>
+                        <div class="project-image"
+                             style="background-image: url('Screenshot%202026-09-15%20131607.png');"
+                             role="img"
+                             aria-label="Screenshot of the Doctor Channeling System">
+                            <div class="project-overlay">
+                                <span class="project-number">05</span>
+                                <div class="project-title">
+                                    <p class="project-type">Java • Command Line</p>
+                                    <h3>Doctor Channeling System</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-body">
+                            <p>
+                                A Java-based command-line application developed to manage
+                                patient and doctor appointments using efficient data structures.
+                            </p>
+                            <div class="tags">
+                                <span>Java</span>
+                                <span>OOP</span>
+                                <span>Data Structures</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- PROJECT 06 -->
+                    <article class="project-card" data-reveal>
+                        <div class="project-image"
+                             style="background-image: url('Screenshot%202026-09-15%20131830.png');"
+                             role="img"
+                             aria-label="Screenshot of the Data Analysis System">
+                            <div class="project-overlay">
+                                <span class="project-number">06</span>
+                                <div class="project-title">
+                                    <p class="project-type">Python • Data Analysis</p>
+                                    <h3>Data Analysis System</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-body">
+                            <p>
+                                A Python-based data analysis application using Pandas to
+                                analyze data and present insights through visualizations.
+                            </p>
+                            <div class="tags">
+                                <span>Python</span>
+                                <span>Pandas</span>
+                                <span>Visualization</span>
+                            </div>
+                        </div>
+                    </article>
+
                 </div>
-            </div>
-        </div>
 
-        <div class="project-body">
-            <p>
-                A C# Windows application designed to automate training fee
-                calculations with a user-friendly interface and accurate
-                computation logic.
-            </p>
-
-            <div class="tags">
-                <span>C#</span>
-                <span>SQL Server</span>
-                <span>Windows Forms</span>
-            </div>
-        </div>
-    </article>
-
-
-    <!-- PROJECT 02 -->
-    <article class="project-card">
-        <div class="project-image"
-             style="background-image: url('Screenshot 2026-09-15 125836.png');">
-            <div class="project-overlay">
-                <span class="project-number">02</span>
-
-                <div class="project-title">
-                    <p class="project-type">Web Development</p>
-                    <h3>E-Commerce Website</h3>
-                </div>
-            </div>
-        </div>
-
-        <div class="project-body">
-            <p>
-                An online store developed with HTML, CSS, JavaScript, PHP
-                and MySQL, featuring product listings and database integration.
-            </p>
-
-            <div class="tags">
-                <span>HTML</span>
-                <span>CSS</span>
-                <span>PHP</span>
-                <span>MySQL</span>
-            </div>
-        </div>
-    </article>
-
-
-    <!-- PROJECT 03 -->
-    <article class="project-card">
-        <div class="project-image"
-             style="background-image: url('Screenshot 2026-09-15 130741.png');">
-            <div class="project-overlay">
-                <span class="project-number">03</span>
-
-                <div class="project-title">
-                    <p class="project-type">Database Management</p>
-                    <h3>Hotel Management Database System</h3>
-                </div>
-            </div>
-        </div>
-
-        <div class="project-body">
-            <p>
-                A database management system designed with CRUD functionality
-                to efficiently manage and organize hotel-related data.
-            </p>
-
-            <div class="tags">
-                <span>SQL</span>
-                <span>MySQL</span>
-                <span>CRUD</span>
-            </div>
-        </div>
-    </article>
-
-
-    <!-- PROJECT 04 -->
-    <article class="project-card">
-        <div class="project-image"
-             style="background-image: url('Screenshot 2026-09-15 131045.png');">
-            <div class="project-overlay">
-                <span class="project-number">04</span>
-
-                <div class="project-title">
-                    <p class="project-type">UI/UX Design • Figma</p>
-                    <h3>UI/UX Prototype</h3>
-                </div>
-            </div>
-        </div>
-
-        <div class="project-body">
-            <p>
-                An interactive UI/UX prototype designed in Figma, applying
-                user-centered design principles to create a clear and
-                engaging interface.
-            </p>
-
-            <div class="tags">
-                <span>Figma</span>
-                <span>Wireframe</span>
-                <span>Prototype</span>
-            </div>
-        </div>
-    </article>
-
-
-    <!-- PROJECT 05 -->
-    <article class="project-card">
-        <div class="project-image"
-             style="background-image: url('Screenshot 2026-09-15 131607.png');">
-            <div class="project-overlay">
-                <span class="project-number">05</span>
-
-                <div class="project-title">
-                    <p class="project-type">Java • Command Line</p>
-                    <h3>Doctor Channeling System</h3>
-                </div>
-            </div>
-        </div>
-
-        <div class="project-body">
-            <p>
-                A Java-based command-line application developed to manage
-                patient and doctor appointments using efficient data structures.
-            </p>
-
-            <div class="tags">
-                <span>Java</span>
-                <span>OOP</span>
-                <span>Data Structures</span>
-            </div>
-        </div>
-    </article>
-
-
-    <!-- PROJECT 06 -->
-    <article class="project-card">
-        <div class="project-image"
-             style="background-image: url('Screenshot 2026-09-15 131830.png');">
-            <div class="project-overlay">
-                <span class="project-number">06</span>
-
-                <div class="project-title">
-                    <p class="project-type">Python • Data Analysis</p>
-                    <h3>Data Analysis System</h3>
-                </div>
-            </div>
-        </div>
-
-        <div class="project-body">
-            <p>
-                A Python-based data analysis application using Pandas to
-                analyze data and present insights through visualizations.
-            </p>
-
-            <div class="tags">
-                <span>Python</span>
-                <span>Pandas</span>
-                <span>Visualization</span>
-            </div>
-        </div>
-    </article>
-
-</div>
             </div>
         </section>
 
-        <!-- EDUCATION -->
+        <!-- =========================================================
+             EDUCATION
+             ========================================================= -->
         <section class="section education" id="education">
             <div class="container">
-                <div class="section-heading centered">
+
+                <div class="section-heading centered" data-reveal>
                     <p class="eyebrow">Education</p>
                     <h2>My academic <span>journey.</span></h2>
                 </div>
 
-                <div class="timeline">
-                    <article class="timeline-item">
-                        <div class="timeline-dot"></div>
+                <ol class="timeline">
+
+                    <li class="timeline-item" data-reveal>
+                        <span class="timeline-dot" aria-hidden="true"></span>
                         <div class="timeline-card">
                             <span class="timeline-date">Current</span>
                             <h3>BSc (Hons) in Computer Science — Artificial Intelligence</h3>
                             <p>ESOFT University — Jaffna</p>
                         </div>
-                    </article>
+                    </li>
 
-                    <article class="timeline-item">
-                        <div class="timeline-dot"></div>
+                    <li class="timeline-item" data-reveal>
+                        <span class="timeline-dot" aria-hidden="true"></span>
                         <div class="timeline-card">
                             <span class="timeline-date">Nov 2024 — Sep 2026</span>
                             <h3>Higher National Diploma in Software Engineering</h3>
                             <p>ESOFT University — Jaffna</p>
                             <small>Overall Distinction</small>
                         </div>
-                    </article>
+                    </li>
 
-                    <article class="timeline-item">
-                        <div class="timeline-dot"></div>
+                    <li class="timeline-item" data-reveal>
+                        <span class="timeline-dot" aria-hidden="true"></span>
                         <div class="timeline-card">
                             <span class="timeline-date">Nov 2024 — Jun 2025</span>
                             <h3>Diploma in Information Technology</h3>
                             <p>ESOFT University — Jaffna</p>
                         </div>
-                    </article>
+                    </li>
 
-                    <article class="timeline-item">
-                        <div class="timeline-dot"></div>
+                    <li class="timeline-item" data-reveal>
+                        <span class="timeline-dot" aria-hidden="true"></span>
                         <div class="timeline-card">
                             <span class="timeline-date">2022</span>
                             <h3>G.C.E. Advanced Level — Physical Science</h3>
                             <p>J/Vadamarachchi Hindu Girls' College</p>
                         </div>
-                    </article>
+                    </li>
 
-                    <article class="timeline-item">
-                        <div class="timeline-dot"></div>
+                    <li class="timeline-item" data-reveal>
+                        <span class="timeline-dot" aria-hidden="true"></span>
                         <div class="timeline-card">
                             <span class="timeline-date">2019</span>
                             <h3>G.C.E. Ordinary Level</h3>
                             <p>J/Vadamarachchi Hindu Girls' College</p>
                         </div>
-                    </article>
-                </div>
+                    </li>
+
+                </ol>
+
             </div>
         </section>
 
-        <!-- EXPERIENCE -->
+        <!-- =========================================================
+             EXPERIENCE
+             ========================================================= -->
         <section class="section experience" id="experience">
             <div class="container experience-box">
-                <div class="section-heading">
+
+                <div class="section-heading" data-reveal>
                     <p class="eyebrow">Experience</p>
                     <h2>Building skills through <span>real experience.</span></h2>
                 </div>
 
-                <article class="experience-card">
+                <article class="experience-card" data-reveal>
                     <div class="experience-top">
                         <div>
-                            <p class="project-type">Teaching & Communication</p>
+                            <p class="project-type">Teaching &amp; Communication</p>
                             <h3>Assistant Lecturer</h3>
                             <p>J/Thampasiddy M.M.T.M School</p>
                         </div>
@@ -795,341 +711,271 @@
                         and supporting learning activities.
                     </p>
                 </article>
+
             </div>
         </section>
 
-        <!-- CERTIFICATIONS -->
-<section class="section certifications" id="certifications">
-    <div class="container">
-        <div class="section-heading">
-            <p class="eyebrow">Certifications</p>
-            <h2>Continuous learning & <span>professional growth.</span></h2>
-        </div>
+        <!-- =========================================================
+             CERTIFICATIONS
+             ========================================================= -->
+        <section class="section certifications" id="certifications">
+            <div class="container">
 
-        <div class="certification-grid">
+                <div class="section-heading" data-reveal>
+                    <p class="eyebrow">Certifications</p>
+                    <h2>Continuous learning &amp; <span>professional growth.</span></h2>
+                </div>
 
-        <!-- CERTIFICATION 01 -->
-<article class="certification-card">
+                <div class="certification-grid">
 
-    <div class="certification-icon">
-        <img src="WhatsApp Image 2026-09-15 at 14.07.12.jpeg"
-             alt="Level 3 Diploma in Information Technology Certificate">
-    </div>
+                    <!-- CERTIFICATION 01 -->
+                    <article class="certification-card" data-reveal>
+                        <div class="certification-icon">
+                            <img src="WhatsApp%20Image%202026-09-15%20at%2014.07.12.jpeg"
+                                 alt="Level 3 Diploma in Information Technology certificate"
+                                 width="600" height="420"
+                                 loading="lazy" decoding="async">
+                        </div>
 
-    <div class="certification-content">
+                        <div class="certification-content">
+                            <h3>Level 3 Diploma in Information Technology</h3>
+                            <p class="certification-description">
+                                Successfully completed the Level 3 Diploma in Information Technology,
+                                strengthening my technical knowledge, problem-solving skills, and
+                                foundation in the IT field. This achievement marks an important step
+                                toward my continued academic and professional growth.
+                            </p>
+                            <div class="certification-footer">
+                                <span>ESOFT University</span>
+                                <span class="certification-status">Completed</span>
+                            </div>
+                        </div>
+                    </article>
 
-        <h3>
-            Level 3 Diploma in Information Technology
-        </h3>
+                    <!-- CERTIFICATION 02 -->
+                    <article class="certification-card" data-reveal>
+                        <div class="certification-icon">
+                            <img src="Screenshot%202026-09-15%20140116.png"
+                                 alt="NEWLY AI Hackathon certificate for Visual Mind Lite"
+                                 width="600" height="420"
+                                 loading="lazy" decoding="async">
+                        </div>
 
-        <p class="certification-description">
-            Successfully completed the Level 3 Diploma in Information Technology,
-            strengthening my technical knowledge, problem-solving skills, and
-            foundation in the IT field. This achievement marks an important step
-            toward my continued academic and professional growth.
-        </p>
+                        <div class="certification-content">
+                            <h3>NEWLY AI Hackathon - Visual Mind Lite</h3>
+                            <p class="certification-description">
+                                Participated in a 4-hour hackathon and developed Visual Mind Lite, a lightweight mobile application that transforms ideas into structured visual diagrams. Strengthened my skills in rapid prototyping, problem-solving, logical thinking, and user-centered design.
+                            </p>
+                            <div class="certification-footer">
+                                <span>ESOFT UNI JAFFNA</span>
+                                <span class="certification-status">Completed</span>
+                            </div>
+                        </div>
+                    </article>
 
-        <div class="certification-footer">
-            <span>ESOFT University</span>
+                    <!-- CERTIFICATION 03 -->
+                    <article class="certification-card" data-reveal>
+                        <div class="certification-icon">
+                            <img src="Screenshot%202026-09-15%20140047.png"
+                                 alt="Certificate from American Corner Jaffna work readiness programme"
+                                 width="600" height="420"
+                                 loading="lazy" decoding="async">
+                        </div>
 
-            <span class="certification-status">
-                Completed
-            </span>
-        </div>
+                        <div class="certification-content">
+                            <h3>Certification of Competition</h3>
+                            <p class="certification-description">
+                                Successfully completed the “Using American English and U.S. Business Tools for Success: Work Readiness and Communication Excellence” program, conducted by American Corner Jaffna from May to July 2026.
+                            </p>
+                            <div class="certification-footer">
+                                <span>American Corner- Jaffna</span>
+                                <span class="certification-status">Completed</span>
+                            </div>
+                        </div>
+                    </article>
 
-    </div>
+                    <!-- CERTIFICATION 04 -->
+                    <article class="certification-card" data-reveal>
+                        <div class="certification-icon">
+                            <img src="Screenshot%202026-09-15%20140103.png"
+                                 alt="Spoken English certificate from ISS Campus Colombo"
+                                 width="600" height="420"
+                                 loading="lazy" decoding="async">
+                        </div>
 
-</article>
+                        <div class="certification-content">
+                            <h3>Spoken English- Certification</h3>
+                            <p class="certification-description">
+                                This course greatly improved my English proficiency , helping me communicate clearly and confidently in both spoken and written forms. It strengthened my ability to present ideas, engage in conversations, and handle professional interactions , which has been invaluable for my academic projects and future career in software engineering
+                            </p>
+                            <div class="certification-footer">
+                                <span>ISS Campus - Colombo</span>
+                                <span class="certification-status">Completed</span>
+                            </div>
+                        </div>
+                    </article>
 
-
-<!-- CERTIFICATION 02 -->
-<article class="certification-card">
-
-    <div class="certification-icon">
-        <img src="Screenshot 2026-09-15 140116.png"
-             alt="Certification 02">
-    </div>
-
-    <div class="certification-content">
-
-        <h3>
-            NEWLY AI Hackathon - Visual Mind Lite
-        </h3>
-
-        <p class="certification-description">
-            Participated in a 4-hour hackathon and developed Visual Mind Lite, a lightweight mobile application that transforms ideas into structured visual diagrams. Strengthened my skills in rapid prototyping, problem-solving, logical thinking, and user-centered design.
-        </p>
-
-        <div class="certification-footer">
-            <span>ESOFT UNI JAFFNA</span>
-
-            <span class="certification-status">
-                Completed
-            </span>
-        </div>
-
-    </div>
-
-</article>
-
-
-<!-- CERTIFICATION 03 -->
-<article class="certification-card">
-
-    <div class="certification-icon">
-        <img src="Screenshot 2026-09-15 140047.png"
-             alt="Certification 03">
-    </div>
-
-    <div class="certification-content">
-
-        <h3>
-            Certification of Competition 
-        </h3>
-
-        <p class="certification-description">
-            Successfully completed the “Using American English and U.S. Business Tools for Success: Work Readiness and Communication Excellence” program, conducted by American Corner Jaffna from May to July 2026.
-        </p>
-
-        <div class="certification-footer">
-            <span>American Corner- Jaffna</span>
-
-            <span class="certification-status">
-                Completed
-            </span>
-        </div>
-
-    </div>
-
-</article>
-
-
-<!-- CERTIFICATION 04 -->
-<article class="certification-card">
-
-    <div class="certification-icon">
-        <img src="Screenshot 2026-09-15 140103.png"
-             alt="Certification 04">
-    </div>
-
-    <div class="certification-content">
-
-        <h3>
-            Spoken English- Certification
-        </h3>
-
-        <p class="certification-description">
-           This course greatly improved my English proficiency , helping me communicate clearly and confidently in both spoken and written forms. It strengthened my ability to present ideas, engage in conversations, and handle professional interactions , which has been invaluable for my academic projects and future career in software engineering
-        </p>
-
-        <div class="certification-footer">
-            <span>ISS Campus - Colombo</span>
-
-            <span class="certification-status">
-                Completed
-            </span>
-        </div>
-
-    </div>
-
-</article>
-
-        </div>
-    </div>
-</section>
-
-        <!-- CONTACT -->
-<section class="section contact" id="contact">
-    <div class="container">
-
-        <div class="contact-box">
-
-            <div class="contact-intro">
-
-                <p class="eyebrow">Get In Touch</p>
-
-                <h2>
-                    Let's build something
-                    <span>meaningful.</span>
-                </h2>
-
-                <p class="contact-description">
-                    I'm open to opportunities in Front-End Development,
-                    UI/UX Design, and Software Development. If you'd like
-                    to discuss a project, collaboration, or career opportunity,
-                    feel free to get in touch.
-                </p>
-
-                <div class="contact-note">
-                    <span></span>
-                    Available for opportunities
                 </div>
 
             </div>
+        </section>
 
+        <!-- =========================================================
+             CONTACT
+             ========================================================= -->
+        <section class="section contact" id="contact">
+            <div class="container">
 
-            <div class="contact-links">
+                <div class="contact-box" data-reveal>
 
-                <!-- EMAIL -->
-                <a href="mailto:tharmi952@gmail.com"
-                   class="contact-link">
+                    <div class="contact-intro">
 
-                    <span class="contact-icon">✉</span>
+                        <p class="eyebrow">Get In Touch</p>
 
-                    <div>
-                        <small>Email</small>
-                        <strong>tharmi952@gmail.com</strong>
-                        <em>Send me an email ↗</em>
+                        <h2>Let's build something <span>meaningful.</span></h2>
+
+                        <p class="contact-description">
+                            I'm open to opportunities in Front-End Development,
+                            UI/UX Design, and Software Development. If you'd like
+                            to discuss a project, collaboration, or career opportunity,
+                            feel free to get in touch.
+                        </p>
+
+                        <p class="contact-note">
+                            <span aria-hidden="true"></span>
+                            Available for opportunities
+                        </p>
+
                     </div>
 
-                    <span class="contact-arrow">↗</span>
+                    <div class="contact-links">
 
-                </a>
+                        <!-- EMAIL -->
+                        <a href="mailto:tharmi952@gmail.com" class="contact-link">
+                            <span class="contact-icon" aria-hidden="true">✉</span>
+                            <div>
+                                <small>Email</small>
+                                <strong>tharmi952@gmail.com</strong>
+                                <em>Send me an email ↗</em>
+                            </div>
+                            <span class="contact-arrow" aria-hidden="true">↗</span>
+                        </a>
 
+                        <!-- LINKEDIN -->
+                        <a href="https://www.linkedin.com/in/tharmiyoha/#:~:text=www.linkedin.com/in/tharmiyoha"
+                           class="contact-link"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            <span class="contact-icon linkedin-icon" aria-hidden="true">in</span>
+                            <div>
+                                <small>LinkedIn</small>
+                                <strong>TharmiYohaLinkedin</strong>
+                                <em>Connect with me ↗</em>
+                            </div>
+                            <span class="contact-arrow" aria-hidden="true">↗</span>
+                        </a>
 
-                <!-- LINKEDIN -->
-                <a href="https://www.linkedin.com/in/tharmiyoha/#:~:text=www.linkedin.com/in/tharmiyoha"
-                   class="contact-link"
-                   target="_blank"
-                   rel="noopener noreferrer">
+                        <!-- GITHUB -->
+                        <a href="https://github.com/Tharmi-Yoha"
+                           class="contact-link"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            <span class="contact-icon github-icon" aria-hidden="true">◉</span>
+                            <div>
+                                <small>GitHub</small>
+                                <strong>TharmiYohaGithub</strong>
+                                <em>View my projects ↗</em>
+                            </div>
+                            <span class="contact-arrow" aria-hidden="true">↗</span>
+                        </a>
 
-                    <span class="contact-icon linkedin-icon">
-                        in
-                    </span>
-
-                    <div>
-                        <small>LinkedIn</small>
-                        <strong>TharmiYohaLinkedin</strong>
-                        <em>Connect with me ↗</em>
                     </div>
 
-                    <span class="contact-arrow">↗</span>
+                </div>
 
-                </a>
+            </div>
+        </section>
 
+    </main>
 
-                <!-- GITHUB -->
-                <a href="https://github.com/Tharmi-Yoha"
-                   class="contact-link"
-                   target="_blank"
-                   rel="noopener noreferrer">
+    <!-- =========================================================
+         FOOTER
+         ========================================================= -->
+    <footer>
 
-                    <span class="contact-icon github-icon">
-                        ◉
-                    </span>
+        <div class="container footer-wrap">
 
-                    <div>
-                        <small>GitHub</small>
-                        <strong>TharmiYohaGithub</strong>
-                        <em>View my projects ↗</em>
-                    </div>
+            <div class="footer-brand">
+                <a href="#home" class="footer-logo">TY<span>.</span></a>
+                <p>Junior Front-End Developer &amp; UI/UX Designer</p>
+            </div>
 
-                    <span class="contact-arrow">↗</span>
+            <nav class="footer-nav" aria-label="Footer navigation">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#certifications">Certifications</a>
+                <a href="#education">Education</a>
+                <a href="#experience">Experience</a>
+                <a href="#contact">Contact</a>
+            </nav>
 
-                </a>
+            <div class="footer-right">
+
+                <div class="footer-socials">
+
+                    <a href="https://www.linkedin.com/in/tharmiyoha/#:~:text=www.linkedin.com/in/tharmiyoha"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       aria-label="LinkedIn profile">in</a>
+
+                    <a href="https://github.com/Tharmi-Yoha"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       aria-label="GitHub profile">◉</a>
+
+                    <a href="mailto:tharmi952@gmail.com"
+                       aria-label="Email Tharmika">✉</a>
+
+                </div>
+
+                <a href="#home" class="back-top">Back to top ↑</a>
 
             </div>
 
         </div>
 
-    </div>
-</section>
-
-
-</main>
-
-
-<!-- =========================================================
-     FOOTER
-     ========================================================= -->
-
-<footer>
-
-    <div class="container footer-wrap">
-
-        <div class="footer-brand">
-
-            <a href="#home" class="footer-logo">
-                TY<span>.</span>
-            </a>
-
-            <p>
-                Junior Front-End Developer & UI/UX Designer
-            </p>
-
-        </div>
-
-
-        <nav class="footer-nav" aria-label="Footer navigation">
-
-            <a href="#about">About</a>
-
-            <a href="#skills">Skills</a>
-
-            <a href="#projects">Projects</a>
-
-            <a href="#certifications">Certifications</a>
-
-            <a href="#education">Education</a>
-
-            <a href="#experience">Experience</a>
-
-            <a href="#contact">Contact</a>
-
-        </nav>
-
-
-        <div class="footer-right">
-
-            <div class="footer-socials">
-
-                <a href="https://www.linkedin.com/in/tharmiyoha/#:~:text=www.linkedin.com/in/tharmiyoha"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   aria-label="LinkedIn">
-                    in
-                </a>
-
-                <a href="https://github.com/Tharmi-Yoha"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   aria-label="GitHub">
-                    ◉
-                </a>
-
-                <a href="mailto:tharmi952@gmail.com"
-                   aria-label="Email">
-                    ✉
-                </a>
-
+        <div class="footer-bottom">
+            <div class="container">
+                <p>© 2026 Tharmika Yoharanjitham. All rights reserved.</p>
+                <p>Designed &amp; Developed by Tharmika</p>
             </div>
-
-            <a href="#home" class="back-top">
-                Back to top ↑
-            </a>
-
         </div>
 
-    </div>
+    </footer>
 
+    <!-- =========================================================
+         SCROLL REVEAL  (~10 lines, no libraries, no dependencies)
+         ========================================================= -->
+    <script>
+    (function () {
+        var items = document.querySelectorAll('[data-reveal]');
+        if (!('IntersectionObserver' in window) ||
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            items.forEach(function (el) { el.classList.add('is-visible'); });
+            return;
+        }
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    io.unobserve(entry.target);
+                }
+            });
+        }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+        items.forEach(function (el) { io.observe(el); });
+    })();
+    </script>
 
-    <div class="footer-bottom">
-
-        <div class="container">
-
-            <p>
-                © 2026 Tharmika Yoharanjitham.
-                All rights reserved.
-            </p>
-
-            <p>
-                Designed & Developed by Tharmika
-            </p>
-
-        </div>
-
-    </div>
-
-</footer>
 </body>
 </html>
