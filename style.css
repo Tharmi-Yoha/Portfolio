@@ -52,12 +52,12 @@
     --line-strong: #333333;
 
     /* ---- Brand ---- */
-    --primary:       #ff6a00;
-    --primary-dark:  #e85d00;
-    --accent:        #ff9a3d;
+    --primary:       #680BAB;
+    --primary-dark:  #570992;
+    --accent:        #9B5ACF;
 
     /* Brand as a channel triplet, so alpha variants stay consistent */
-    --primary-rgb: 255, 106, 0;
+    --primary-rgb: 104, 11, 171;
 
     /* ---- Radii: three steps only, tied to element size ---- */
     --r-sm: 10px;
@@ -237,11 +237,16 @@ p {
 
 .skill-grid > [data-reveal]:nth-child(3n) { transition-delay: .16s; }
 
+/* The three About cards share one reveal, so they stagger on their own */
+.js .about-content.is-visible .about-highlights article {
+    animation: fadeUp .6s var(--ease) both;
+}
+
+.js .about-content.is-visible .about-highlights article:nth-child(2) { animation-delay: .1s; }
+.js .about-content.is-visible .about-highlights article:nth-child(3) { animation-delay: .2s; }
 
 /* =========================================================
-   04  PRELOADER
-   Pure CSS: shows the mark, wipes a bar, then removes itself.
-   No JavaScript and no render-blocking work.
+   04  PREMIUM PRELOADER
    ========================================================= */
 
 .preloader {
@@ -250,51 +255,304 @@ p {
     z-index: 5000;
     display: grid;
     place-items: center;
-    background: var(--bg);
-    animation: preloaderOut .45s var(--ease) 1s forwards;
-}
-
-.preloader-inner {
-    display: grid;
-    justify-items: center;
-    gap: 18px;
-}
-
-.preloader-mark {
-    font-family: "Manrope", system-ui, sans-serif;
-    font-size: 34px;
-    font-weight: 800;
-    letter-spacing: -2px;
-    color: var(--text);
-    animation: fadeIn .5s var(--ease) both;
-}
-
-.preloader-mark i {
-    color: var(--primary);
-    font-style: normal;
-}
-
-.preloader-bar {
-    position: relative;
-    display: block;
-    width: 120px;
-    height: 2px;
-    border-radius: 20px;
     overflow: hidden;
-    background: #1e1e1e;
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(var(--primary-rgb), .10) 0%,
+            rgba(var(--primary-rgb), .035) 25%,
+            transparent 55%
+        ),
+        #080808;
+
+    animation: preloaderOut .55s var(--ease) 1.35s forwards;
 }
 
-.preloader-bar::after {
+/* subtle background grid */
+.preloader::before {
     content: "";
     position: absolute;
     inset: 0;
-    border-radius: inherit;
-    background: linear-gradient(90deg, rgba(var(--primary-rgb), .4), var(--primary));
+    pointer-events: none;
+    opacity: .18;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 70px 70px;
+}
+
+/* ambient glow */
+.preloader::after {
+    content: "";
+    position: absolute;
+    width: 360px;
+    height: 360px;
+    border-radius: 50%;
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(var(--primary-rgb), .12),
+            transparent 68%
+        );
+
+    animation: preloaderGlow 3s ease-in-out infinite;
+}
+
+/* main content */
+.preloader-inner {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+}
+
+/* TY logo */
+.preloader-logo {
+    display: flex;
+    align-items: center;
+
+    font-family: "Manrope", system-ui, sans-serif;
+    font-size: clamp(64px, 9vw, 92px);
+    font-weight: 800;
+    line-height: 1;
+
+    letter-spacing: -7px;
+
+    color: #ffffff;
+
+    text-shadow:
+        0 0 25px rgba(255,255,255,.08),
+        0 0 60px rgba(var(--primary-rgb), .15);
+}
+
+/* individual letters */
+.preloader-letter {
+    display: inline-block;
+
+    opacity: 0;
+    transform: translateY(22px) scale(.9);
+
+    animation:
+        preloaderLetter .7s var(--ease) .15s forwards;
+}
+
+.preloader-letter.accent {
+    color: var(--primary);
+
+    animation-delay: .28s;
+
+    text-shadow:
+        0 0 20px rgba(var(--primary-rgb), .4),
+        0 0 50px rgba(var(--primary-rgb), .18);
+}
+
+/* name under logo */
+.preloader-name {
+    margin-top: 18px;
+
+    color: rgba(255,255,255,.72);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 5px;
+
+    opacity: 0;
+    transform: translateY(10px);
+
+    animation:
+        preloaderName .6s var(--ease) .55s forwards;
+}
+
+/* loading line */
+.preloader-line {
+    position: relative;
+
+    width: 150px;
+    height: 2px;
+
+    margin-top: 25px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background: #222222;
+
+    opacity: 0;
+
+    animation: preloaderLineIn .4s ease .7s forwards;
+}
+
+/* animated progress */
+.preloader-line span {
+    position: absolute;
+    inset: 0;
+
+    display: block;
+
+    width: 100%;
+
     transform-origin: left;
-    animation: preloaderFill .95s var(--ease) forwards;
+    transform: scaleX(0);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(var(--primary-rgb), .25),
+            var(--primary),
+            var(--accent)
+        );
+
+    box-shadow:
+        0 0 12px rgba(var(--primary-rgb), .45);
+
+    animation:
+        preloaderProgress 1.05s var(--ease) .72s forwards;
+}
+
+/* status text */
+.preloader-status {
+    margin-top: 12px;
+
+    color: #555555;
+
+    font-size: 9px;
+    font-weight: 600;
+
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    opacity: 0;
+
+    animation:
+        preloaderStatus .5s ease .8s forwards;
 }
 
 
+/* =========================================================
+   PRELOADER ANIMATIONS
+   ========================================================= */
+
+@keyframes preloaderLetter {
+
+    0% {
+        opacity: 0;
+        transform:
+            translateY(22px)
+            scale(.9);
+    }
+
+    70% {
+        opacity: 1;
+        transform:
+            translateY(-3px)
+            scale(1.02);
+    }
+
+    100% {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+@keyframes preloaderName {
+
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes preloaderLineIn {
+
+    from {
+        opacity: 0;
+        transform: scaleX(.7);
+    }
+
+    to {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+}
+
+
+@keyframes preloaderProgress {
+
+    from {
+        transform: scaleX(0);
+    }
+
+    to {
+        transform: scaleX(1);
+    }
+}
+
+
+@keyframes preloaderStatus {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+@keyframes preloaderGlow {
+
+    0%, 100% {
+        transform: scale(.9);
+        opacity: .55;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+}
+
+
+@keyframes preloaderOut {
+
+    0% {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+}
 /* =========================================================
    05  HEADER & NAVIGATION
    ========================================================= */
@@ -390,7 +648,7 @@ p {
     padding: 11px 18px;
     border-radius: var(--r-sm);
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    color: #050505;
+    color: #aeacac;
     font-size: 13px;
     font-weight: 800;
     box-shadow: 0 8px 22px rgba(var(--primary-rgb), .18);
@@ -522,9 +780,31 @@ p {
     color: #ffffff;
 }
 
+/* Accent word gets a rule that draws itself in when the heading
+   scrolls into view. */
 .section-heading h2 span {
+    position: relative;
     color: var(--primary);
 }
+
+.section-heading h2 span::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -.1em;
+    height: 2px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--primary), transparent);
+    transform-origin: left;
+}
+
+.js .section-heading h2 span::after {
+    transform: scaleX(0);
+    transition: transform .9s var(--ease) .25s;
+}
+
+.js .section-heading.is-visible h2 span::after { transform: scaleX(1); }
 
 /* Replaces the fragile `> p:last-child` selector */
 .section-lead {
@@ -578,7 +858,7 @@ p {
 .btn:hover::before { left: 140%; }
 
 .btn-primary {
-    background: linear-gradient(135deg, #ff7a18, #f45d00);
+    background: linear-gradient(135deg, #7B1FC4, #5E0A9E);
     color: #050505;
     box-shadow: 0 12px 30px rgba(var(--primary-rgb), .2);
 }
@@ -639,7 +919,24 @@ p {
         transparent 70%);
 }
 
+/* Second, slower bloom on the left. Both are gradients, not blur filters. */
+.hero::after {
+    content: "";
+    position: absolute;
+    left: -180px;
+    bottom: -140px;
+    width: 460px;
+    height: 460px;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(circle, rgba(var(--primary-rgb), .07), transparent 68%);
+    animation: heroDrift 22s ease-in-out infinite;
+    will-change: transform;
+}
+
 .hero-grid {
+    position: relative;
+    z-index: 1;
     display: grid;
     grid-template-columns: 1.1fr .9fr;
     align-items: center;
@@ -669,7 +966,7 @@ p {
 
 .hero-content h1 span {
     display: block;
-    background: linear-gradient(90deg, #ff6a00, #ff9a3d, #ff6a00);
+    background: linear-gradient(90deg, #680BAB, #9B5ACF, #680BAB);
     background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
@@ -756,57 +1053,284 @@ p {
     transform: translateY(-2px);
 }
 
-/* ---- Visual ---- */
+.social-box:hover {
+    transform: translateY(-3px) scale(1.07);
+    box-shadow: 0 8px 20px rgba(var(--primary-rgb), .16);
+}
+
+/* =========================================================
+   HERO VISUAL — LAYERED PROFILE COMPOSITION
+
+   Stacking order, back to front:
+     0  .visual-stage        ambient glow + faint radial grid
+     1  .ring-*              orbit lines, orbit dots, arc sweep
+     2  .deco-*              geometric accents
+     3  .profile-frame       glass plate + rotating gradient border
+     4  .profile-image       the photo (never rotates, never blurs)
+     5  ::after              inner highlight + inner shadow
+     6  .floating-card       glass UI chips
+
+   Ring sizes come from two custom properties so the responsive rules
+   only change a number — the orbit radius follows automatically and
+   the keyframes are written once.
+   ========================================================= */
+
 .hero-visual {
+    --ring-outer: 470px;
+    --ring-inner: 358px;
+
     position: relative;
     display: grid;
     place-items: center;
-    min-height: 540px;
+    min-height: 560px;
     animation: fadeIn .9s var(--ease) 1.05s both;
 }
 
+/* ---- Layer 0: stage ---- */
+.visual-stage {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+}
+
+/* Ambient halo behind everything */
+.visual-stage::before {
+    content: "";
+    position: absolute;
+    width: 460px;
+    height: 460px;
+    max-width: 96%;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+        rgba(var(--primary-rgb), .16) 0%,
+        rgba(var(--primary-rgb), .05) 38%,
+        transparent 68%);
+    animation: haloPulse 7s ease-in-out infinite;
+}
+
+/* Faint radial grid, fades out before it reaches the photo */
+.visual-stage::after {
+    content: "";
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    max-width: 92%;
+    opacity: .5;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, .05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .05) 1px, transparent 1px);
+    background-size: 42px 42px;
+    -webkit-mask-image: radial-gradient(circle, #000 25%, transparent 70%);
+    mask-image: radial-gradient(circle, #000 25%, transparent 70%);
+}
+
+/* ---- Layer 1: orbit rings ---- */
+.ring {
+    position: absolute;
+    border-radius: 50%;
+    transition: border-color var(--slow) var(--ease), opacity var(--slow) var(--ease);
+}
+
+/* Solid outer ring, carries one orbiting dot */
+.ring-outer {
+    --r: calc(var(--ring-outer) / 2);
+    width: var(--ring-outer);
+    height: var(--ring-outer);
+    border: 1px solid rgba(var(--primary-rgb), .22);
+    box-shadow:
+        0 0 0 34px rgba(var(--primary-rgb), .02),
+        0 0 0 68px rgba(var(--primary-rgb), .01);
+    animation: ringPulse 7s ease-in-out infinite;
+}
+
+/* Dashed inner ring, rotates the opposite way so the two read as depth */
+.ring-inner {
+    --r: calc(var(--ring-inner) / 2);
+    width: var(--ring-inner);
+    height: var(--ring-inner);
+    border: 1px dashed rgba(255, 255, 255, .1);
+    animation: spinSlow 48s linear infinite reverse;
+}
+
+/* Quarter-arc sweep: only one border edge is coloured */
+.ring-arc {
+    width: calc(var(--ring-outer) - 46px);
+    height: calc(var(--ring-outer) - 46px);
+    border: 1px solid transparent;
+    border-top-color: rgba(var(--primary-rgb), .55);
+    border-right-color: rgba(var(--primary-rgb), .18);
+    animation: spinSlow 18s linear infinite;
+}
+
+/* Orbiting dots. translateX(var(--r)) puts each dot exactly on its
+   own ring, whatever size the breakpoint sets. */
+.ring-outer::before,
+.ring-inner::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    animation: orbitDot linear infinite;
+}
+
+.ring-outer::before {
+    width: 10px;
+    height: 10px;
+    margin: -5px 0 0 -5px;
+    background: var(--primary);
+    box-shadow: 0 0 18px rgba(var(--primary-rgb), .9);
+    animation-duration: 14s;
+}
+
+.ring-inner::before {
+    width: 6px;
+    height: 6px;
+    margin: -3px 0 0 -3px;
+    background: var(--accent);
+    box-shadow: 0 0 12px rgba(var(--primary-rgb), .7);
+    animation-duration: 20s;
+    animation-direction: reverse;
+}
+
+/* ---- Layer 2: geometric accents ---- */
+.deco {
+    position: absolute;
+    pointer-events: none;
+}
+
+.deco-square {
+    top: 16%;
+    left: 4%;
+    width: 22px;
+    height: 22px;
+    border: 1px solid rgba(var(--primary-rgb), .45);
+    border-radius: 5px;
+    animation: driftA 9s ease-in-out infinite;
+}
+
+.deco-diamond {
+    right: 7%;
+    bottom: 22%;
+    width: 16px;
+    height: 16px;
+    border: 1px solid rgba(255, 255, 255, .18);
+    transform: rotate(45deg);
+    animation: driftB 11s ease-in-out infinite;
+}
+
+.deco-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--primary);
+}
+
+.deco-dot-a {
+    top: 9%;
+    right: 22%;
+    box-shadow: 0 0 12px rgba(var(--primary-rgb), .8);
+    animation: twinkle 4.5s ease-in-out infinite;
+}
+
+.deco-dot-b {
+    bottom: 12%;
+    left: 20%;
+    width: 4px;
+    height: 4px;
+    background: var(--accent);
+    box-shadow: 0 0 10px rgba(var(--primary-rgb), .6);
+    animation: twinkle 6s ease-in-out infinite 1.5s;
+}
+
+/* ---- Layer 3: the frame ----
+   overflow:hidden clips the rotating gradient into the rounded
+   rectangle, so the border itself appears to travel. box-shadow is
+   not clipped by overflow, so the outer glow still escapes. */
 .profile-frame {
     position: relative;
     z-index: 2;
     width: min(360px, 82%);
     aspect-ratio: 4 / 5;
-    padding: 9px;
-    border-radius: 28px;
-    isolation: isolate;
-    background: linear-gradient(145deg,
-        rgba(var(--primary-rgb), .8),
-        rgba(var(--primary-rgb), .15),
-        rgba(255, 255, 255, .08));
+    padding: 3px;
+    border-radius: 30px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, .05);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
     box-shadow:
-        0 0 0 1px rgba(var(--primary-rgb), .12),
+        0 0 0 1px rgba(199, 3, 220, 0.06),
         var(--shadow-lg),
-        0 0 60px rgba(var(--primary-rgb), .1);
+        0 0 70px rgba(var(--primary-rgb), .1);
     animation: float 6s ease-in-out infinite;
+    transition:
+        transform  var(--slow) var(--ease),
+        box-shadow var(--slow) var(--ease);
     will-change: transform;
 }
 
+/* Rotating gradient border. A rotated pseudo-element rather than an
+   animated conic angle, so the browser composites it instead of
+   repainting the gradient every frame. */
+.profile-frame::before {
+    content: "";
+    position: absolute;
+    inset: -60%;
+    z-index: 0;
+    background: conic-gradient(
+        from 0deg,
+        transparent 0 42%,
+        rgba(var(--primary-rgb), .55) 52%,
+        #3b115d 60%,
+        rgba(var(--primary-rgb), .55) 68%,
+        transparent 78% 100%);
+    animation: spinSlow 7s linear infinite;
+    transition: opacity var(--slow) var(--ease);
+    opacity: .85;
+    will-change: transform;
+}
+
+/* Layer 5: inner highlight + inner shadow, sits above the photo */
+.profile-frame::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    z-index: 4;
+    border-radius: 27px;
+    pointer-events: none;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .16),
+        inset 0 0 0 1px rgba(255, 255, 255, .05),
+        inset 0 -30px 60px rgba(0, 0, 0, .5);
+    transition: box-shadow var(--slow) var(--ease);
+}
+
+/* ---- Layer 4: the photo ---- */
 .profile-image {
     position: relative;
+    z-index: 3;
     width: 100%;
     height: 100%;
-    border-radius: 20px;
+    border-radius: 27px;
     overflow: hidden;
     background: var(--surface);
 }
 
-/* Sheen */
+/* Travelling light sweep */
 .profile-image::before {
     content: "";
     position: absolute;
     inset: 0;
     z-index: 3;
     pointer-events: none;
-    background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, .1) 50%, transparent 70%);
-    transform: translateX(-120%);
-    transition: transform .9s var(--ease);
+    background: linear-gradient(120deg, transparent 32%, rgba(255, 255, 255, .13) 50%, transparent 68%);
+    transform: translateX(-130%);
+    transition: transform 1s var(--ease);
 }
 
-.profile-frame:hover .profile-image::before { transform: translateX(120%); }
+.profile-frame:hover .profile-image::before { transform: translateX(130%); }
 
 /* Bottom fade, keeps the frame edge readable */
 .profile-image::after {
@@ -815,7 +1339,7 @@ p {
     inset: 0;
     z-index: 2;
     pointer-events: none;
-    background: linear-gradient(180deg, transparent 58%, rgba(0, 0, 0, .45));
+    background: linear-gradient(180deg, transparent 56%, rgba(0, 0, 0, .5));
 }
 
 .profile-image img {
@@ -824,39 +1348,43 @@ p {
     object-fit: cover;
     object-position: center top;
     filter: saturate(.94) contrast(1.04);
-    transition: transform .7s var(--ease);
+    transition: transform .8s var(--ease), filter var(--slow) var(--ease);
 }
 
-.profile-frame:hover .profile-image img { transform: scale(1.04); }
-
-/* ---- Orbiting ring ----
-   The dot is now centred on the ring before it orbits, so the radius
-   actually matches the ring instead of drifting off-centre. */
-.visual-ring {
-    position: absolute;
-    width: 460px;
-    height: 460px;
-    max-width: 100%;
-    border: 1px solid rgba(var(--primary-rgb), .22);
-    border-radius: 50%;
+/* ---- Hover: everything intensifies slightly, nothing jumps ---- */
+.profile-frame:hover {
+    transform: scale(1.018);
     box-shadow:
-        0 0 0 34px rgba(var(--primary-rgb), .022),
-        0 0 0 68px rgba(var(--primary-rgb), .012);
-    animation: ringPulse 6s ease-in-out infinite;
+        0 0 0 1px rgba(var(--primary-rgb), .3),
+        var(--shadow-lg),
+        0 0 110px rgba(var(--primary-rgb), .22);
 }
 
-.visual-ring::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 10px;
-    height: 10px;
-    margin: -5px 0 0 -5px;
-    border-radius: 50%;
-    background: var(--primary);
-    box-shadow: 0 0 18px rgba(var(--primary-rgb), .9);
-    animation: orbitDot 9s linear infinite;
+.profile-frame:hover::before {
+    opacity: 1;
+    animation-duration: 3.5s;   /* border sweep speeds up */
+}
+
+.profile-frame:hover::after {
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .24),
+        inset 0 0 0 1px rgba(var(--primary-rgb), .22),
+        inset 0 -30px 60px rgba(0, 0, 0, .55);
+}
+
+.profile-frame:hover .profile-image img {
+    transform: scale(1.05);
+    filter: saturate(1) contrast(1.06);
+}
+
+/* Rings respond to the photo being hovered, which ties the
+   composition together instead of leaving the decor inert. */
+.hero-visual:has(.profile-frame:hover) .ring-outer {
+    border-color: rgba(var(--primary-rgb), .38);
+}
+
+.hero-visual:has(.profile-frame:hover) .ring-inner {
+    border-color: rgba(255, 255, 255, .18);
 }
 
 /* ---- Floating labels ---- */
@@ -983,7 +1511,7 @@ p {
 }
 
 .about-highlights article:hover {
-    transform: translateY(-6px);
+    transform: translateY(-10px);
     border-color: rgba(var(--primary-rgb), .35);
     box-shadow: var(--shadow-md), var(--glow);
 }
@@ -1032,7 +1560,7 @@ p {
     border: 1px solid var(--line);
     border-radius: var(--r-lg);
     overflow: hidden;
-    background: linear-gradient(145deg, var(--surface-2), #0e0e0e);
+    background: linear-gradient(145deg, var(--surface-2), #000000);
     transition:
         transform    var(--normal) var(--ease),
         border-color var(--normal) var(--ease),
@@ -2025,12 +2553,44 @@ footer {
 
 @keyframes ringPulse {
     0%, 100% { transform: scale(1);    opacity: .6; }
-    50%      { transform: scale(1.05); opacity: 1; }
+    50%      { transform: scale(1.04); opacity: 1; }
 }
 
+/* The radius reads from --r on the ring, so one keyframe covers
+   every breakpoint. */
 @keyframes orbitDot {
-    from { transform: rotate(0deg)   translateX(230px) rotate(0deg); }
-    to   { transform: rotate(360deg) translateX(230px) rotate(-360deg); }
+    from { transform: rotate(0deg)   translateX(var(--r)) rotate(0deg); }
+    to   { transform: rotate(360deg) translateX(var(--r)) rotate(-360deg); }
+}
+
+@keyframes spinSlow {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+@keyframes haloPulse {
+    0%, 100% { transform: scale(1);    opacity: .75; }
+    50%      { transform: scale(1.07); opacity: 1; }
+}
+
+@keyframes heroDrift {
+    0%, 100% { transform: translate(0, 0); }
+    50%      { transform: translate(70px, -50px); }
+}
+
+@keyframes driftA {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    50%      { transform: translate(8px, -14px) rotate(12deg); }
+}
+
+@keyframes driftB {
+    0%, 100% { transform: translate(0, 0) rotate(45deg); }
+    50%      { transform: translate(-10px, -12px) rotate(60deg); }
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 1;  transform: scale(1); }
+    50%      { opacity: .3; transform: scale(.7); }
 }
 
 @keyframes gradientText {
@@ -2060,11 +2620,9 @@ footer {
 
     .hero-grid { gap: 36px; }
 
-    .visual-ring { width: 400px; height: 400px; }
-
-    @keyframes orbitDot {
-        from { transform: rotate(0deg)   translateX(200px) rotate(0deg); }
-        to   { transform: rotate(360deg) translateX(200px) rotate(-360deg); }
+    .hero-visual {
+        --ring-outer: 410px;
+        --ring-inner: 312px;
     }
 }
 
@@ -2165,12 +2723,17 @@ footer {
 
     .hero-visual { min-height: 380px; }
 
-    .visual-ring { width: 310px; height: 310px; }
-
-    @keyframes orbitDot {
-        from { transform: rotate(0deg)   translateX(155px) rotate(0deg); }
-        to   { transform: rotate(360deg) translateX(155px) rotate(-360deg); }
+    .hero-visual {
+        --ring-outer: 320px;
+        --ring-inner: 244px;
+        min-height: 400px;
     }
+
+    .visual-stage::before { width: 330px; height: 330px; }
+    .visual-stage::after  { width: 300px; height: 300px; background-size: 34px 34px; }
+
+    .deco-square  { left: 1%; width: 18px; height: 18px; }
+    .deco-diamond { right: 2%; }
 
     .profile-frame { width: 270px; }
 
@@ -2212,12 +2775,20 @@ footer {
 
     .info-box { width: 100%; justify-content: center; }
 
-    .visual-ring { width: 250px; height: 250px; }
-
-    @keyframes orbitDot {
-        from { transform: rotate(0deg)   translateX(125px) rotate(0deg); }
-        to   { transform: rotate(360deg) translateX(125px) rotate(-360deg); }
+    .hero-visual {
+        --ring-outer: 262px;
+        --ring-inner: 200px;
     }
+
+    .visual-stage::before { width: 270px; height: 270px; }
+    .visual-stage::after  { display: none; }
+
+    .deco-square,
+    .deco-diamond { display: none; }
+
+    .profile-frame { border-radius: 24px; }
+    .profile-frame::after,
+    .profile-image { border-radius: 21px; }
 
     .profile-frame { width: 230px; }
 
@@ -2261,13 +2832,20 @@ button:focus-visible,
 
     /* Keep decorative loops still rather than snapping them to an end frame */
     body::after,
+    .hero::after,
     .profile-frame,
+    .profile-frame::before,
     .floating-card,
-    .visual-ring,
-    .visual-ring::before,
+    .visual-stage::before,
+    .ring,
+    .ring::before,
+    .deco,
     .contact-note > span {
         animation: none !important;
     }
+
+    /* The gradient border stays as a static ring rather than vanishing */
+    .profile-frame::before { opacity: .7; }
 
     .js [data-reveal] { opacity: 1; transform: none; }
     .js .skill-card .skill-bar > span { transform: scaleX(1); }
